@@ -1,0 +1,51 @@
+// ─── Objections ───
+export const objCategories = [
+  { name: "Incumbent Vendor / Current System", pct: 30, status: "proven", winWhenOvercome: 68,
+    strategy: "Structured capability comparison + transition plan",
+    hospPct: 31, grocPct: 28, hcPct: 12 },
+  { name: "Price / Cost / ROI Justification", pct: 20, status: "proven", winWhenOvercome: 68,
+    strategy: "Specific ROI calculation tied to their volumes — not generic",
+    hospPct: 16, grocPct: 24, hcPct: 14 },
+  { name: "Uncertainty / Low Conviction", pct: 15, status: "gap", winWhenOvercome: null,
+    strategy: "NO PROVEN STRATEGY — biggest enablement gap",
+    hospPct: 27, grocPct: 10, hcPct: 8 },
+  { name: "Implementation / Timeline / Resource", pct: 15, status: "proven", winWhenOvercome: 71,
+    strategy: "Modular roadmap with phased milestones respecting seasonal windows",
+    hospPct: 18, grocPct: 16, hcPct: 12 },
+  { name: "Integration / System Compatibility", pct: 15, status: "proven", winWhenOvercome: 64,
+    strategy: "Live ERP demo + API specs + introduce tech support team",
+    hospPct: 12, grocPct: 14, hcPct: 20 },
+  { name: "Deflection / Stalling", pct: 12, status: "proven", winWhenOvercome: 71,
+    strategy: "Hard close with specific date/time: 'Let's lock in Tuesday 2pm'",
+    hospPct: 14, grocPct: 10, hcPct: 10 },
+  { name: "Decision-Maker / Multi-Stakeholder", pct: 10, status: "proven", winWhenOvercome: 65,
+    strategy: "Map stakeholders in Call 1, get explicit alignment by Call 2",
+    hospPct: 8, grocPct: 10, hcPct: 15 },
+  { name: "Competitive Evaluation", pct: 10, status: "proven", winWhenOvercome: 50,
+    strategy: "Head-to-head feature matrix + customer references by vertical",
+    hospPct: 8, grocPct: 12, hcPct: 8 },
+  { name: "Feature Limitations / Capability Gaps", pct: 10, status: "proven", winWhenOvercome: 72,
+    strategy: "Live demo of workaround: 'Here's how you get to the outcome today'",
+    hospPct: 10, grocPct: 10, hcPct: 10 },
+  { name: "Workflow Change / Team Adoption", pct: 8, status: "proven", winWhenOvercome: 65,
+    strategy: "Change management plan + identify super-user at each location",
+    hospPct: 8, grocPct: 8, hcPct: 6 },
+  { name: "External Blockers (Audit/M&A/Regulatory)", pct: 5, status: "gap", winWhenOvercome: null,
+    strategy: "NO PROVEN STRATEGY — 85-95% loss rate; mostly uncontrollable",
+    hospPct: 4, grocPct: 3, hcPct: 22 },
+];
+
+export const dealKillers = [
+  { name: "External Blockers (audit, M&A, regulatory holds)", lossRate: 94, desc: "Uncontrollable events discovered late in the cycle" },
+  { name: "Deflection + No Specific Next Step", lossRate: 92, desc: "'I'll follow up' with no date = deal evaporates" },
+  { name: "Uncertainty + No Business Case Built", lossRate: 88, desc: "Incomplete discovery, missing ROI, no internal sponsor" },
+  { name: "Objection Discovered but Never Addressed", lossRate: 87, desc: "Rep saw the signal and didn't respond with specificity" },
+  { name: "Price Objection Recurring (4.6x higher on losses)", lossRate: 82, desc: "Symptom of low conviction, not affordability" },
+];
+
+export const objStageData = [
+  { stage: "Discovery (Calls 1-2)", avgObj: 16, lossRate: 34, label: "HIGH-IMPACT: Surface everything here" },
+  { stage: "Qualification (Calls 3-4)", avgObj: 24, lossRate: 51, label: "CRITICAL: Confirm stakeholders + business case" },
+  { stage: "Evaluation (Calls 5-7)", avgObj: 35, lossRate: 68, label: "HARDENING: Positions lock in — introduce proof" },
+  { stage: "Decision (Call 8+)", avgObj: 10, lossRate: 87, label: "POINT OF NO RETURN: Hard close or walk" },
+];
