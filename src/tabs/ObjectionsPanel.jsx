@@ -44,7 +44,7 @@ export default function ObjectionsPanel() {
                 <div style={{ height: 8, borderRadius: 99, background: C.border, overflow: "hidden" }}>
                   <div style={{ width: `${(pct / 35) * 100}%`, height: "100%", background: o.status === "gap" ? C.lost : C.primary, borderRadius: 99 }} />
                 </div>
-                <span style={{ color: C.textMuted, fontSize: 12, textAlign: "right" }}>{pct}% of deals</span>
+                <span style={{ color: C.textMuted, fontSize: 12, textAlign: "right" }}>{pct}% of deals ({o.dealCount})</span>
                 <span style={{ textAlign: "right" }}>
                   {o.winWhenOvercome ? (
                     <span style={{ color: C.won, fontWeight: 700, fontSize: 14 }}>{o.winWhenOvercome}%</span>
@@ -63,9 +63,33 @@ export default function ObjectionsPanel() {
         </div>
       </div>
 
+      {/* Deal killers — full width, elevated */}
+      <div style={{ background: C.card, borderRadius: 12, padding: 24, border: `1px solid ${C.border}`, marginBottom: 24 }}>
+        <h3 style={{ color: C.text, fontSize: 16, fontWeight: 600, margin: "0 0 4px" }}>Top Deal Killers</h3>
+        <p style={{ color: C.textMuted, fontSize: 13, margin: "0 0 20px" }}>Patterns from 464 deals where loss was near-certain once the signal appeared.</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          {dealKillers.map((d, i) => (
+            <div key={i}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+                <span style={{ color: C.text, fontSize: 13, fontWeight: 600 }}>{d.name}</span>
+                <span style={{ color: C.lost, fontWeight: 700, fontSize: 14, flexShrink: 0, marginLeft: 12 }}>{d.lossRate}% loss rate</span>
+              </div>
+              <div style={{ height: 6, borderRadius: 99, background: `${C.border}`, overflow: "hidden", marginBottom: 6 }}>
+                <div style={{ width: `${d.lossRate}%`, height: "100%", background: C.lost, borderRadius: 99 }} />
+              </div>
+              <div style={{ color: C.textMuted, fontSize: 12, marginBottom: 4 }}>{d.desc}</div>
+              <div style={{ color: C.won, fontSize: 12 }}><strong>Instead:</strong> {d.fix}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Proven strategies table */}
       <div style={{ background: C.card, borderRadius: 12, padding: 24, border: `1px solid ${C.border}`, marginBottom: 24 }}>
-        <h3 style={{ color: C.text, fontSize: 16, fontWeight: 600, margin: "0 0 16px" }}>Proven Overcoming Strategies</h3>
+        <h3 style={{ color: C.text, fontSize: 16, fontWeight: 600, margin: "0 0 4px" }}>Proven Overcoming Strategies</h3>
+        <p style={{ color: C.textMuted, fontSize: 13, margin: "0 0 16px" }}>
+          A strategy is labeled "proven" when the specific approach was observed in multiple transcripts and correlated with a documented move-forward rate. Win % = rate when the rep used <em>this specific approach</em>, not the overall win rate for deals where the objection appeared.
+        </p>
         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
           <thead>
             <tr style={{ borderBottom: `1px solid ${C.border}` }}>
@@ -92,30 +116,13 @@ export default function ObjectionsPanel() {
         </table>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginBottom: 24 }}>
-        {/* Deal killers */}
-        <div style={{ background: C.card, borderRadius: 12, padding: 24, border: `1px solid ${C.border}` }}>
-          <h3 style={{ color: C.text, fontSize: 16, fontWeight: 600, margin: "0 0 16px" }}>Top Deal Killers</h3>
-          {dealKillers.map((d, i) => (
-            <div key={i} style={{ marginBottom: 16 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-                <span style={{ color: C.text, fontSize: 13, fontWeight: 500 }}>{d.name}</span>
-                <span style={{ color: C.lost, fontWeight: 700, fontSize: 14 }}>{d.lossRate}% loss</span>
-              </div>
-              <div style={{ height: 8, borderRadius: 99, background: `${C.won}33`, overflow: "hidden", marginBottom: 4 }}>
-                <div style={{ width: `${d.lossRate}%`, height: "100%", background: C.lost, borderRadius: 99 }} />
-              </div>
-              <div style={{ color: C.textMuted, fontSize: 11 }}>{d.desc}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Timing chart */}
-        <div style={{ background: C.card, borderRadius: 12, padding: 24, border: `1px solid ${C.border}` }}>
-          <h3 style={{ color: C.text, fontSize: 16, fontWeight: 600, margin: "0 0 4px" }}>When Objections Surface Matters</h3>
-          <p style={{ color: C.textMuted, fontSize: 13, margin: "0 0 16px" }}>Objections surfaced in Discovery (Calls 1-2) are 2.5x more winnable.</p>
+      {/* Timing chart — full width */}
+      <div style={{ background: C.card, borderRadius: 12, padding: 24, border: `1px solid ${C.border}`, marginBottom: 24 }}>
+        <h3 style={{ color: C.text, fontSize: 16, fontWeight: 600, margin: "0 0 4px" }}>When Objections Surface Matters</h3>
+        <p style={{ color: C.textMuted, fontSize: 13, margin: "0 0 16px" }}>Objections surfaced in Discovery (Calls 1-2) are 2.5x more winnable than the same objection raised in Evaluation (Calls 5-7).</p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           {objStageData.map((s, i) => (
-            <div key={i} style={{ marginBottom: 14 }}>
+            <div key={i}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
                 <span style={{ color: C.text, fontSize: 13, fontWeight: 500 }}>{s.stage}</span>
                 <span style={{ color: s.lossRate >= 70 ? C.lost : s.lossRate >= 50 ? C.accent1 : C.won, fontWeight: 600, fontSize: 13 }}>{s.lossRate}% loss if unaddressed</span>
@@ -134,20 +141,20 @@ export default function ObjectionsPanel() {
         <div style={{ background: `${C.lost}11`, borderRadius: 12, padding: 20, border: `1px solid ${C.lost}33` }}>
           <div style={{ color: C.lost, fontSize: 13, fontWeight: 600, textTransform: "uppercase", marginBottom: 8 }}>Price Objection: Won vs Lost</div>
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-            <div style={{ textAlign: "center" }}><div style={{ color: C.won, fontSize: 28, fontWeight: 700 }}>18.2</div><div style={{ color: C.textMuted, fontSize: 11 }}>Avg on Won</div></div>
+            <div style={{ textAlign: "center" }}><div style={{ color: C.won, fontSize: 28, fontWeight: 700 }}>18.2</div><div style={{ color: C.textMuted, fontSize: 11 }}>avg instances/deal (won)</div></div>
             <div style={{ color: C.textMuted, fontSize: 20 }}>{"\u2192"}</div>
-            <div style={{ textAlign: "center" }}><div style={{ color: C.lost, fontSize: 28, fontWeight: 700 }}>84.6</div><div style={{ color: C.textMuted, fontSize: 11 }}>Avg on Lost</div></div>
+            <div style={{ textAlign: "center" }}><div style={{ color: C.lost, fontSize: 28, fontWeight: 700 }}>84.6</div><div style={{ color: C.textMuted, fontSize: 11 }}>avg instances/deal (lost)</div></div>
           </div>
-          <p style={{ color: C.textMuted, fontSize: 12, marginTop: 8 }}>4.6x higher on losses — a symptom of low conviction, not affordability.</p>
+          <p style={{ color: C.textMuted, fontSize: 12, marginTop: 8 }}>On deals we won, price came up about 18 times across all calls. On deals we lost, it surfaced 85 times. High frequency means the buyer was never convinced, not that the price was wrong.</p>
         </div>
         <div style={{ background: `${C.lost}11`, borderRadius: 12, padding: 20, border: `1px solid ${C.lost}33` }}>
           <div style={{ color: C.lost, fontSize: 13, fontWeight: 600, textTransform: "uppercase", marginBottom: 8 }}>Uncertainty Objection: Won vs Lost</div>
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-            <div style={{ textAlign: "center" }}><div style={{ color: C.won, fontSize: 28, fontWeight: 700 }}>14.1</div><div style={{ color: C.textMuted, fontSize: 11 }}>Avg on Won</div></div>
+            <div style={{ textAlign: "center" }}><div style={{ color: C.won, fontSize: 28, fontWeight: 700 }}>14.1</div><div style={{ color: C.textMuted, fontSize: 11 }}>avg instances/deal (won)</div></div>
             <div style={{ color: C.textMuted, fontSize: 20 }}>{"\u2192"}</div>
-            <div style={{ textAlign: "center" }}><div style={{ color: C.lost, fontSize: 28, fontWeight: 700 }}>68.7</div><div style={{ color: C.textMuted, fontSize: 11 }}>Avg on Lost</div></div>
+            <div style={{ textAlign: "center" }}><div style={{ color: C.lost, fontSize: 28, fontWeight: 700 }}>68.7</div><div style={{ color: C.textMuted, fontSize: 11 }}>avg instances/deal (lost)</div></div>
           </div>
-          <p style={{ color: C.textMuted, fontSize: 12, marginTop: 8 }}>4.9x higher on losses — biggest untested gap, zero proven overcoming strategy.</p>
+          <p style={{ color: C.textMuted, fontSize: 12, marginTop: 8 }}>On won deals, uncertainty came up about 14 times per deal. On lost deals, 69 times. There is no proven overcoming strategy yet. This is the biggest coaching gap in the dataset.</p>
         </div>
       </div>
     </div>
