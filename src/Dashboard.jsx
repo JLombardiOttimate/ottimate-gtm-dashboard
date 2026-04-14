@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { BarChart3, Filter, Zap, ShieldCheck, Users } from "lucide-react";
+import { BarChart3, Filter, Zap, ShieldCheck, Users, TrendingUp } from "lucide-react";
 import { C } from './data/colors';
 import OverviewPanel from './tabs/OverviewPanel';
 import VerticalsPanel from './tabs/VerticalsPanel';
 import TriggersPanel from './tabs/TriggersPanel';
 import ObjectionsPanel from './tabs/ObjectionsPanel';
 import ChampionsPanel from './tabs/ChampionsPanel';
+import ExecutionPanel from './tabs/ExecutionPanel';
 
 const tabs = [
   { id: "overview", label: "Overview", icon: BarChart3 },
@@ -13,6 +14,7 @@ const tabs = [
   { id: "triggers", label: "Buying Triggers", icon: Zap },
   { id: "objections", label: "Objections", icon: ShieldCheck },
   { id: "champions", label: "Champions", icon: Users },
+  { id: "execution", label: "Deal Execution", icon: TrendingUp },
 ];
 
 export default function OttimateGTMDashboard() {
@@ -24,6 +26,7 @@ export default function OttimateGTMDashboard() {
     triggers: <TriggersPanel />,
     objections: <ObjectionsPanel />,
     champions: <ChampionsPanel />,
+    execution: <ExecutionPanel />,
   };
 
   return (
