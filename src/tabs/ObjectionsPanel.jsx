@@ -4,15 +4,27 @@ import { objCategories, dealKillers, objStageData } from '../data/objections';
 import Badge from '../components/Badge';
 import InsightBox from '../components/InsightBox';
 import VerticalSelector from '../components/VerticalSelector';
+import DeltaBadge from '../components/DeltaBadge';
+import LowNPill from '../components/LowNPill';
+import { useLiveCohort } from '../hooks/useLiveCohort';
+import liveObjectionsPayload from '../data/generated/objections.live.json';
 
 export default function ObjectionsPanel() {
   const [vert, setVert] = useState("all");
+  const liveCohort = useLiveCohort(liveObjectionsPayload);
 
   const getPct = (o) => {
     if (vert === "hospitality") return o.hospPct;
     if (vert === "grocery") return o.grocPct;
     if (vert === "healthcare") return o.hcPct;
     return o.pct;
+  };
+  const getLivePct = (live) => {
+    if (!live) return null;
+    if (vert === "hospitality") return live.hospPct;
+    if (vert === "grocery") return live.grocPct;
+    if (vert === "healthcare") return live.hcPct;
+    return live.pct;
   };
 
   const sorted = [...objCategories].sort((a, b) => getPct(b) - getPct(a));
@@ -35,23 +47,61 @@ export default function ObjectionsPanel() {
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {sorted.map((o, i) => {
             const pct = getPct(o);
+            const liveRow = liveCohort.byName(o.name);
+            const livePct = getLivePct(liveRow);
+            const isUnmappable = liveCohort.isUnmappable(o.name);
+            const showLive = liveCohort.active;
+            const delta = livePct !== null && livePct !== undefined && pct !== null ? livePct - pct : null;
+            const liveHasCoverage = liveRow && (liveRow.dealCount ?? 0) >= 5;
             return (
-              <div key={i} style={{ display: "grid", gridTemplateColumns: "280px 1fr 100px 60px", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: `1px solid ${C.border}22` }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 8, height: 8, borderRadius: 99, background: o.status === "gap" ? C.lost : C.won, flexShrink: 0 }} />
-                  <span style={{ color: C.text, fontSize: 13, fontWeight: 500 }}>{o.name}</span>
+              <div key={i} style={{ padding: "10px 0", borderBottom: `1px solid ${C.border}22` }}>
+                <div style={{ display: "grid", gridTemplateColumns: "280px 1fr 100px 60px", alignItems: "center", gap: 12 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ width: 8, height: 8, borderRadius: 99, background: o.status === "gap" ? C.lost : C.won, flexShrink: 0 }} />
+                    <span style={{ color: C.text, fontSize: 13, fontWeight: 500 }}>{o.name}</span>
+                    {showLive && isUnmappable && <LowNPill variant="notInLive" />}
+                  </div>
+                  <div style={{ height: 8, borderRadius: 99, background: C.border, overflow: "hidden" }}>
+                    <div style={{ width: `${(pct / 35) * 100}%`, height: "100%", background: o.status === "gap" ? C.lost : C.primary, borderRadius: 99 }} />
+                  </div>
+                  <span style={{ color: C.textMuted, fontSize: 12, textAlign: "right" }}>{pct}% of deals ({o.dealCount})</span>
+                  <span style={{ textAlign: "right" }}>
+                    {o.winWhenOvercome ? (
+                      <span style={{ color: C.won, fontWeight: 700, fontSize: 14 }}>{o.winWhenOvercome}%</span>
+                    ) : (
+                      <Badge color={C.lost}>Gap</Badge>
+                    )}
+                  </span>
                 </div>
-                <div style={{ height: 8, borderRadius: 99, background: C.border, overflow: "hidden" }}>
-                  <div style={{ width: `${(pct / 35) * 100}%`, height: "100%", background: o.status === "gap" ? C.lost : C.primary, borderRadius: 99 }} />
-                </div>
-                <span style={{ color: C.textMuted, fontSize: 12, textAlign: "right" }}>{pct}% of deals ({o.dealCount})</span>
-                <span style={{ textAlign: "right" }}>
-                  {o.winWhenOvercome ? (
-                    <span style={{ color: C.won, fontWeight: 700, fontSize: 14 }}>{o.winWhenOvercome}%</span>
-                  ) : (
-                    <Badge color={C.lost}>Gap</Badge>
-                  )}
-                </span>
+                {showLive && !isUnmappable && liveRow && (
+                  <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "280px 1fr 100px 60px",
+                    alignItems: "center",
+                    gap: 12,
+                    marginTop: 6,
+                    opacity: 0.75,
+                  }}>
+                    <div style={{ color: C.textMuted, fontSize: 11, paddingLeft: 16 }}>
+                      Live cohort (n={liveRow.dealCount ?? 0})
+                      {!liveHasCoverage && <LowNPill variant="lowN" />}
+                    </div>
+                    <div style={{ height: 6, borderRadius: 99, background: C.border, overflow: "hidden" }}>
+                      {livePct !== null && livePct !== undefined && (
+                        <div style={{ width: `${(livePct / 35) * 100}%`, height: "100%", background: C.textMuted, borderRadius: 99, opacity: 0.6 }} />
+                      )}
+                    </div>
+                    <span style={{ color: C.textMuted, fontSize: 11, textAlign: "right" }}>
+                      {livePct !== null && livePct !== undefined ? `${livePct}%` : "—"}
+                      <DeltaBadge delta={delta} inverted muted={!liveHasCoverage} />
+                    </span>
+                    <span style={{ textAlign: "right", color: C.textMuted, fontSize: 11 }}>
+                      {liveRow.winWhenOvercome !== null && liveRow.winWhenOvercome !== undefined
+                        ? `${liveRow.winWhenOvercome}%`
+                        : "—"}
+                    </span>
+                  </div>
+                )}
               </div>
             );
           })}

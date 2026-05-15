@@ -1,0 +1,55 @@
+{
+  "n": 27,
+  "generated_at": "2026-05-15T15:40:28.821Z",
+  "overall": [
+    {
+      "element": "Metrics",
+      "wonScore": 3.5,
+      "lostScore": 1.63,
+      "gap": 1.87,
+      "coverage_ok": true
+    },
+    {
+      "element": "Economic Buyer",
+      "wonScore": 3.25,
+      "lostScore": 2.32,
+      "gap": 0.93,
+      "coverage_ok": true
+    },
+    {
+      "element": "Decision Criteria",
+      "wonScore": 3.75,
+      "lostScore": 1.84,
+      "gap": 1.91,
+      "coverage_ok": true
+    },
+    {
+      "element": "Decision Process",
+      "wonScore": 3.63,
+      "lostScore": 1.68,
+      "gap": 1.95,
+      "coverage_ok": true
+    },
+    {
+      "element": "Implicate Pain",
+      "wonScore": 4.38,
+      "lostScore": 2.05,
+      "gap": 2.33,
+      "coverage_ok": true
+    },
+    {
+      "element": "Champion",
+      "wonScore": 4.25,
+      "lostScore": 1.21,
+      "gap": 3.04,
+      "coverage_ok": true
+    },
+    {
+      "element": "Competition",
+      "wonScore": 2.38,
+      "lostScore": 1.53,
+      "gap": 0.85,
+      "coverage_ok": true
+    }
+  ]
+}

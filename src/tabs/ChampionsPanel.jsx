@@ -6,9 +6,17 @@ import { champScoreData, champRubric, champRolesByVertical } from '../data/champ
 import InsightBox from '../components/InsightBox';
 import VerticalSelector from '../components/VerticalSelector';
 import CustomTooltip from '../components/CustomTooltip';
+import LowNPill from '../components/LowNPill';
+import { useCompareMode } from '../hooks/useCompareMode';
+import liveChampionsPayload from '../data/generated/champions.live.json';
 
 export default function ChampionsPanel() {
   const [vert, setVert] = useState("hospitality");
+  const { on: compareOn } = useCompareMode();
+  const liveActive = compareOn && (liveChampionsPayload?.n ?? 0) > 0;
+  const liveScoreByScore = new Map(
+    (liveChampionsPayload?.scoreData ?? []).map((d) => [d.score, d]),
+  );
 
   const vData = champRolesByVertical[vert.charAt(0).toUpperCase() + vert.slice(1)] || champRolesByVertical.Hospitality;
 
@@ -43,6 +51,13 @@ export default function ChampionsPanel() {
       <div style={{ background: C.card, borderRadius: 12, padding: 24, border: `1px solid ${C.border}`, marginBottom: 24 }}>
         <h3 style={{ color: C.text, fontSize: 16, fontWeight: 600, margin: "0 0 4px" }}>Champion Score vs. Outcome</h3>
         <p style={{ color: C.textMuted, fontSize: 13, margin: "0 0 16px" }}>423 deals scored. Won deals average <strong style={{ color: C.won }}>4.19</strong> vs <strong style={{ color: C.lost }}>1.72</strong> on losses — a 2.47-point gap.</p>
+        {liveActive && (
+          <p style={{ color: C.textMuted, fontSize: 12, margin: "-8px 0 16px", opacity: 0.8 }}>
+            Live cohort (n={liveChampionsPayload.n_with_score ?? 0}): won avg{" "}
+            <strong style={{ color: C.won }}>{liveChampionsPayload.avgWon ?? "—"}</strong> vs lost avg{" "}
+            <strong style={{ color: C.lost }}>{liveChampionsPayload.avgLost ?? "—"}</strong>.
+          </p>
+        )}
         <ResponsiveContainer width="100%" height={280}>
           <ComposedChart data={champScoreData} margin={{ left: 10, right: 30 }}>
             <CartesianGrid strokeDasharray="3 3" stroke={C.border} />
@@ -99,14 +114,29 @@ export default function ChampionsPanel() {
           <div style={{ background: C.card, borderRadius: 12, padding: 20, border: `1px solid ${C.border}`, flex: 1 }}>
             <div style={{ color: C.primary, fontSize: 13, fontWeight: 600, textTransform: "uppercase", marginBottom: 12 }}>Score Distribution — All Verticals</div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
-              {champScoreData.map(d => (
-                <div key={d.score} style={{ textAlign: "center", padding: 8, borderRadius: 8, background: `${d.winRate >= 80 ? C.won : d.winRate >= 30 ? C.accent1 : C.lost}11` }}>
-                  <div style={{ color: d.winRate >= 80 ? C.won : d.winRate >= 30 ? C.accent1 : C.lost, fontSize: 18, fontWeight: 700 }}>{d.total}</div>
-                  <div style={{ color: C.textMuted, fontSize: 10 }}>Score {d.score}</div>
-                  <div style={{ color: C.textMuted, fontSize: 10 }}>{d.winRate}% win</div>
-                </div>
-              ))}
+              {champScoreData.map(d => {
+                const liveD = liveActive ? liveScoreByScore.get(d.score) : null;
+                const liveLowN = liveD && (liveD.total ?? 0) < 5;
+                return (
+                  <div key={d.score} style={{ textAlign: "center", padding: 8, borderRadius: 8, background: `${d.winRate >= 80 ? C.won : d.winRate >= 30 ? C.accent1 : C.lost}11` }}>
+                    <div style={{ color: d.winRate >= 80 ? C.won : d.winRate >= 30 ? C.accent1 : C.lost, fontSize: 18, fontWeight: 700 }}>{d.total}</div>
+                    <div style={{ color: C.textMuted, fontSize: 10 }}>Score {d.score}</div>
+                    <div style={{ color: C.textMuted, fontSize: 10 }}>{d.winRate}% win</div>
+                    {liveActive && liveD && (
+                      <div style={{ marginTop: 6, paddingTop: 6, borderTop: `1px dashed ${C.border}`, color: C.textMuted, fontSize: 10, opacity: liveLowN ? 0.6 : 1 }}>
+                        Live: {liveD.total}{liveLowN && <LowNPill variant="lowN" />}
+                        <div>{liveD.winRate ?? "—"}% win</div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
+            {liveActive && (
+              <div style={{ color: C.textMuted, fontSize: 11, marginTop: 10, opacity: 0.7 }}>
+                Live = Supabase deal_analyses, scores rounded to nearest rubric integer.
+              </div>
+            )}
           </div>
         </div>
       </div>

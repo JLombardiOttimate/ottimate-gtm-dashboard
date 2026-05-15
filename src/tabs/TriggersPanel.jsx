@@ -6,10 +6,15 @@ import { triggers, triggerCombos, triggerCountWinRate } from '../data/triggers';
 import InsightBox from '../components/InsightBox';
 import VerticalSelector from '../components/VerticalSelector';
 import CustomTooltip from '../components/CustomTooltip';
+import DeltaBadge from '../components/DeltaBadge';
+import LowNPill from '../components/LowNPill';
+import { useLiveCohort } from '../hooks/useLiveCohort';
+import liveTriggersPayload from '../data/generated/triggers.live.json';
 
 export default function TriggersPanel() {
   const [vert, setVert] = useState("all");
   const [expanded, setExpanded] = useState(null);
+  const liveCohort = useLiveCohort(liveTriggersPayload);
 
   const getVertWin = (t) => {
     if (vert === "hospitality") return t.hospWin;
@@ -22,6 +27,20 @@ export default function TriggersPanel() {
     if (vert === "grocery") return t.grocDeals;
     if (vert === "healthcare") return t.hcDeals;
     return t.deals;
+  };
+  const getLiveWin = (live) => {
+    if (!live) return null;
+    if (vert === "hospitality") return live.hospWin;
+    if (vert === "grocery") return live.grocWin;
+    if (vert === "healthcare") return live.hcWin;
+    return live.winRate;
+  };
+  const getLiveDeals = (live) => {
+    if (!live) return 0;
+    if (vert === "hospitality") return live.hospDeals;
+    if (vert === "grocery") return live.grocDeals;
+    if (vert === "healthcare") return live.hcDeals;
+    return live.deals;
   };
 
   const sorted = [...triggers].sort((a, b) => getVertWin(b) - getVertWin(a));
@@ -41,6 +60,15 @@ export default function TriggersPanel() {
           const deals = getVertDeals(t);
           const isOpen = expanded === i;
           const barColor = wr >= 50 ? C.won : wr >= 40 ? "#84cc16" : C.accent1;
+          const liveRow = liveCohort.byName(t.name);
+          const liveWin = getLiveWin(liveRow);
+          const liveDeals = getLiveDeals(liveRow);
+          const isUnmappable = liveCohort.isUnmappable(t.name);
+          const showLive = liveCohort.active;
+          const delta = liveWin !== null && liveWin !== undefined && wr !== null
+            ? liveWin - wr
+            : null;
+          const liveHasCoverage = liveRow && liveDeals >= 5;
           return (
             <div key={i} style={{ background: C.card, borderRadius: 12, border: `1px solid ${C.border}`, overflow: "hidden", transition: "all 0.2s" }}>
               <button onClick={() => setExpanded(isOpen ? null : i)} style={{
@@ -48,7 +76,10 @@ export default function TriggersPanel() {
                 display: "grid", gridTemplateColumns: "1fr 100px 80px 30px", alignItems: "center", gap: 16,
               }}>
                 <div style={{ textAlign: "left" }}>
-                  <div style={{ color: C.text, fontWeight: 600, fontSize: 15 }}>{t.name}</div>
+                  <div style={{ color: C.text, fontWeight: 600, fontSize: 15 }}>
+                    {t.name}
+                    {showLive && isUnmappable && <LowNPill variant="baselineOnly" />}
+                  </div>
                   <div style={{ color: C.textMuted, fontSize: 12, marginTop: 2 }}>{deals} deals · +{t.lift}pp above baseline</div>
                 </div>
                 <div style={{ width: 100 }}>
@@ -59,6 +90,33 @@ export default function TriggersPanel() {
                 <div style={{ color: barColor, fontWeight: 700, fontSize: 18, textAlign: "right" }}>{wr}%</div>
                 <div style={{ color: C.textMuted }}>{isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</div>
               </button>
+              {showLive && !isUnmappable && (
+                <div style={{
+                  padding: "0 20px 12px",
+                  display: "grid",
+                  gridTemplateColumns: "1fr 100px 80px 30px",
+                  alignItems: "center",
+                  gap: 16,
+                  opacity: 0.75,
+                }}>
+                  <div style={{ color: C.textMuted, fontSize: 12 }}>
+                    Live cohort (n={liveDeals})
+                    {liveRow && !liveHasCoverage && <LowNPill variant="lowN" />}
+                  </div>
+                  <div style={{ width: 100 }}>
+                    {liveWin !== null && liveWin !== undefined && (
+                      <div style={{ height: 6, borderRadius: 99, background: `${C.border}`, overflow: "hidden" }}>
+                        <div style={{ width: `${liveWin}%`, height: "100%", background: C.textMuted, borderRadius: 99, opacity: 0.6 }} />
+                      </div>
+                    )}
+                  </div>
+                  <div style={{ color: C.textMuted, fontWeight: 600, fontSize: 14, textAlign: "right" }}>
+                    {liveWin !== null && liveWin !== undefined ? `${liveWin}%` : "—"}
+                    <DeltaBadge delta={delta} muted={!liveHasCoverage} />
+                  </div>
+                  <div />
+                </div>
+              )}
               {isOpen && (
                 <div style={{ padding: "0 20px 20px", borderTop: `1px solid ${C.border}` }}>
                   <p style={{ color: C.textMuted, fontSize: 13, lineHeight: 1.6, margin: "16px 0 12px" }}>{t.desc}</p>

@@ -1,9 +1,12 @@
-import { Zap, ShieldCheck, Users } from "lucide-react";
+import { Zap, ShieldCheck, Users, Database } from "lucide-react";
 import { C } from '../data/colors';
 import { triggers } from '../data/triggers';
 import InsightBox from '../components/InsightBox';
+import { useCompareMode } from '../hooks/useCompareMode';
 
 export default function OverviewPanel() {
+  const { enabled: liveEnabled, on: compareOn, cohort } = useCompareMode();
+  const hasAnyLiveData = (cohort?.n ?? 0) > 0;
   return (
     <div>
       <div style={{ marginBottom: 32 }}>
@@ -11,6 +14,39 @@ export default function OverviewPanel() {
           This dashboard surfaces the intelligence from <strong style={{ color: C.text }}>463 deals</strong> and <strong style={{ color: C.text }}>1,993 call transcripts</strong> that can't be pulled from Salesforce: what triggers buying behavior, which objections kill deals (and how to overcome them), and what separates a deal with a real champion from one that stalls. Use the tabs above to drill into each area by vertical.
         </p>
       </div>
+
+      {hasAnyLiveData && (
+        <div style={{ background: C.card, borderRadius: 12, padding: 20, border: `1px solid ${C.primary}33`, marginBottom: 24 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+            <Database size={16} color={C.primary} />
+            <h3 style={{ color: C.text, fontSize: 14, fontWeight: 600, margin: 0 }}>Live Cohort Composition</h3>
+            <span style={{ color: C.textMuted, fontSize: 11, marginLeft: "auto" }}>
+              {compareOn ? "Comparison active" : liveEnabled ? "Toggle on in header to compare" : `Comparison enabled at n=${20}`}
+            </span>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12 }}>
+            <CohortStat label="Total deals" value={cohort.n} color={C.primary} />
+            <CohortStat label="Won / Lost" value={`${cohort.outcome.won} / ${cohort.outcome.lost}`} color={C.text} />
+            <CohortStat
+              label="By vertical"
+              value={`H ${cohort.vertical.Hospitality} · G ${cohort.vertical.Grocery} · HC ${cohort.vertical.Healthcare}`}
+              color={C.text}
+              small
+            />
+            <CohortStat
+              label="Date range"
+              value={cohort.oldest_close_date && cohort.newest_close_date
+                ? `${cohort.oldest_close_date} → ${cohort.newest_close_date}`
+                : "—"}
+              color={C.text}
+              small
+            />
+          </div>
+          <p style={{ color: C.textMuted, fontSize: 12, marginTop: 12, marginBottom: 0, lineHeight: 1.5 }}>
+            Live cohort = closed deals analyzed by the P3 pipeline since the baseline freeze. The 463-deal baseline above is frozen; live numbers refresh via <code style={{ color: C.text }}>npm run refresh-live</code> (or the weekly GitHub Action).
+          </p>
+        </div>
+      )}
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 32 }}>
         {/* Trigger snapshot */}
@@ -82,6 +118,15 @@ export default function OverviewPanel() {
       <InsightBox color={C.primary} title="Cross-Vertical Finding: Economic Buyer by Call 3">
         Across Hospitality, Grocery, and Healthcare, <strong>~80% of won deals</strong> had the CFO/owner actively engaged by Call 3. <strong>~60% of lost deals never engaged the economic buyer at all.</strong> If you're still only talking to the AP manager by Call 3, the deal is stalling. This should be a hard qualification gate.
       </InsightBox>
+    </div>
+  );
+}
+
+function CohortStat({ label, value, color, small = false }) {
+  return (
+    <div style={{ padding: 12, borderRadius: 8, background: `${C.primary}0a`, border: `1px solid ${C.border}` }}>
+      <div style={{ color: C.textMuted, fontSize: 10, textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 4 }}>{label}</div>
+      <div style={{ color, fontSize: small ? 13 : 22, fontWeight: small ? 500 : 700, lineHeight: 1.2 }}>{value}</div>
     </div>
   );
 }

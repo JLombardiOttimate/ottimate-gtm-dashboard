@@ -1,0 +1,84 @@
+{
+  "n": 27,
+  "n_with_objections": 24,
+  "generated_at": "2026-05-15T15:40:28.821Z",
+  "items": [
+    {
+      "name": "Integration / System Compatibility",
+      "pct": 91.7,
+      "dealCount": 22,
+      "winWhenOvercome": 42.1,
+      "hospPct": 37.5,
+      "grocPct": 8.3,
+      "hcPct": 29.2,
+      "coverage_ok": true
+    },
+    {
+      "name": "Price / Cost / ROI Justification",
+      "pct": 45.8,
+      "dealCount": 11,
+      "winWhenOvercome": 85.7,
+      "hospPct": 29.2,
+      "grocPct": 4.2,
+      "hcPct": 8.3,
+      "coverage_ok": true
+    },
+    {
+      "name": "Implementation / Timeline / Resource",
+      "pct": 33.3,
+      "dealCount": 8,
+      "winWhenOvercome": null,
+      "hospPct": 12.5,
+      "grocPct": 4.2,
+      "hcPct": 12.5,
+      "coverage_ok": true
+    },
+    {
+      "name": "Decision-Maker / Multi-Stakeholder",
+      "pct": 16.7,
+      "dealCount": 4,
+      "winWhenOvercome": null,
+      "hospPct": 8.3,
+      "grocPct": 0,
+      "hcPct": 4.2,
+      "coverage_ok": false
+    },
+    {
+      "name": "Competitive Evaluation",
+      "pct": 25,
+      "dealCount": 6,
+      "winWhenOvercome": null,
+      "hospPct": 20.8,
+      "grocPct": 0,
+      "hcPct": 0,
+      "coverage_ok": true
+    },
+    {
+      "name": "Incumbent Vendor / Current System",
+      "pct": 20.8,
+      "dealCount": 5,
+      "winWhenOvercome": null,
+      "hospPct": 12.5,
+      "grocPct": 4.2,
+      "hcPct": 4.2,
+      "coverage_ok": true
+    },
+    {
+      "name": "External Blockers (Audit/M&A/Regulatory)",
+      "pct": 41.7,
+      "dealCount": 10,
+      "winWhenOvercome": 66.7,
+      "hospPct": 25,
+      "grocPct": 0,
+      "hcPct": 16.7,
+      "coverage_ok": true
+    }
+  ],
+  "unmappable": {
+    "Uncertainty / Low Conviction": "not_in_live_taxonomy",
+    "Deflection / Stalling": "not_in_live_taxonomy",
+    "Feature Limitations / Capability Gaps": "not_in_live_taxonomy",
+    "Workflow Change / Team Adoption": "not_in_live_taxonomy"
+  },
+  "other_category_instances": 1
+}

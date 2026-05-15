@@ -1,0 +1,106 @@
+{
+  "n": 27,
+  "generated_at": "2026-05-15T15:40:28.820Z",
+  "items": [
+    {
+      "name": "Staff Loss / AP Turnover",
+      "deals": 0,
+      "winRate": null,
+      "hospDeals": 0,
+      "hospWin": null,
+      "grocDeals": 0,
+      "grocWin": null,
+      "hcDeals": 0,
+      "hcWin": null,
+      "coverage_ok": false
+    },
+    {
+      "name": "Growth Event (Acquisitions / New Locations)",
+      "deals": 2,
+      "winRate": 50,
+      "hospDeals": 1,
+      "hospWin": null,
+      "grocDeals": 0,
+      "grocWin": null,
+      "hcDeals": 0,
+      "hcWin": null,
+      "coverage_ok": false
+    },
+    {
+      "name": "Audit / Compliance Pressure",
+      "deals": 1,
+      "winRate": 0,
+      "hospDeals": 0,
+      "hospWin": null,
+      "grocDeals": 0,
+      "grocWin": null,
+      "hcDeals": 0,
+      "hcWin": null,
+      "coverage_ok": false
+    },
+    {
+      "name": "ERP Migration / System Overhaul",
+      "deals": 1,
+      "winRate": 0,
+      "hospDeals": 1,
+      "hospWin": null,
+      "grocDeals": 0,
+      "grocWin": null,
+      "hcDeals": 0,
+      "hcWin": null,
+      "coverage_ok": false
+    },
+    {
+      "name": "Month-End Close Pain",
+      "deals": 0,
+      "winRate": null,
+      "hospDeals": 0,
+      "hospWin": null,
+      "grocDeals": 0,
+      "grocWin": null,
+      "hcDeals": 0,
+      "hcWin": null,
+      "coverage_ok": false
+    },
+    {
+      "name": "Vendor Payment Friction / Margin Leakage",
+      "deals": 1,
+      "winRate": 0,
+      "hospDeals": 1,
+      "hospWin": null,
+      "grocDeals": 0,
+      "grocWin": null,
+      "hcDeals": 0,
+      "hcWin": null,
+      "coverage_ok": false
+    },
+    {
+      "name": "New Financial Leader",
+      "deals": 1,
+      "winRate": 0,
+      "hospDeals": 1,
+      "hospWin": null,
+      "grocDeals": 0,
+      "grocWin": null,
+      "hcDeals": 0,
+      "hcWin": null,
+      "coverage_ok": false
+    },
+    {
+      "name": "Current Solution Frustration",
+      "deals": 16,
+      "winRate": 43.8,
+      "hospDeals": 6,
+      "hospWin": 33.3,
+      "grocDeals": 2,
+      "grocWin": null,
+      "hcDeals": 7,
+      "hcWin": 57.1,
+      "coverage_ok": true
+    }
+  ],
+  "unmappable": {
+    "Paper/Manual Process (No Prior Automation)": "no_supabase_equivalent"
+  },
+  "unmapped_rows": 1
+}

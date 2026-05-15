@@ -1,0 +1,53 @@
+# Weekly: pull fresh deal_analyses rows from Supabase, regenerate
+# src/data/generated/*.live.json, and commit any changes to main.
+# The existing deploy.yml workflow auto-runs on the resulting push.
+#
+# Requires repo secrets:
+#   SUPABASE_URL
+#   SUPABASE_ANON_KEY        (or SUPABASE_SERVICE_ROLE_KEY if RLS blocks anon)
+name: Refresh live cohort
+
+on:
+  schedule:
+    # Monday 13:00 UTC = 9am ET (8am during US daylight saving)
+    - cron: "0 13 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-live
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run refresh-live aggregator
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/refresh-live.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain src/data/generated)" ]; then
+            git add src/data/generated
+            git commit -m "chore: refresh live cohort $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "No changes to commit."
+          fi

@@ -48,13 +48,33 @@ Right now Dashboard.jsx is a single large file with all data embedded inline. As
 
 ## Data Sources
 
-All data comes from analysis of Gong call transcripts organized in a separate project. Key source files:
+All baseline data comes from analysis of Gong call transcripts organized in a separate project. Key source files:
 - Buying triggers: `ottimate_buying_trigger_validation.md` (463 deals, 1993 calls)
 - Champions: `champion_role_analysis.md` (423 deals scored)
 - Objections: `Ottimate_Objection_Scorecard.md` (464 deals, ~17K objection instances)
 - Verticals: Individual pipeline analysis files per vertical
 
-Data is currently hardcoded in Dashboard.jsx. Future state: pull from a data layer (JSON files or API) so analysis updates don't require touching React components.
+The frozen baseline lives in `src/data/*.js` (handwritten JS modules). Do not edit these to add new deals — they represent the validated 463-deal closed corpus.
+
+## Live cohort layer
+
+In addition to the frozen baseline, the dashboard can overlay a live cohort pulled from the Supabase `deal_analyses` table (written by SAN's P3 pipeline, same table the `deal-intelligence-web` Flask app reads from).
+
+**How it works:**
+- `scripts/refresh-live.mjs` queries Supabase at build/local time, aggregates closed deals into per-domain JSON.
+- Outputs land in `src/data/generated/*.live.json` (committed to git — gives a free history of how live numbers evolve).
+- Each panel imports both the frozen `*.js` baseline and the generated `*.live.json`. A header-level `<CompareToggle />` controls whether live numbers are displayed.
+- Thresholds in `src/data/generated/_thresholds.js`: `MIN_N_GLOBAL = 20` disables the toggle below 20 live deals; `MIN_N_PER_BUCKET = 5` mutes individual buckets.
+
+**Schema mismatches (intentional, surfaced in UI):**
+- Triggers: 8 baseline names map 1:1 to SAN slugs. `Paper/Manual Process (No Prior Automation)` has no Supabase equivalent → rendered with `Baseline only` pill.
+- Objections: SAN uses 8 coarse categories; baseline uses 11 detailed. 4 baseline categories (`Uncertainty / Low Conviction`, `Deflection / Stalling`, `Feature Limitations / Capability Gaps`, `Workflow Change / Team Adoption`) cannot be sourced from live data → rendered with `Baseline only — not in live taxonomy` pill.
+
+Edit `scripts/lib/mappings.mjs` if the SAN prompt taxonomy changes.
+
+**Refresh:**
+- Local: `npm run refresh-live` (requires `.env.local` with `SUPABASE_URL` + `SUPABASE_ANON_KEY` — copy `.env.local.example`).
+- Scheduled: `.github/workflows/refresh-live.yml` runs every Monday 9am ET. Commits any JSON changes to `main`, which triggers `deploy.yml`.
 
 ## Commands
 

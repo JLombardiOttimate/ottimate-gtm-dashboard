@@ -2,12 +2,55 @@ import { C } from '../data/colors';
 import { pricingGate, pricingTiming, pricingSequencing, lossArchetypes } from '../data/execution';
 import InsightBox from '../components/InsightBox';
 import Badge from '../components/Badge';
+import LowNPill from '../components/LowNPill';
+import { useCompareMode } from '../hooks/useCompareMode';
+import liveMeddiccPayload from '../data/generated/meddicc.live.json';
 
 export default function ExecutionPanel() {
   const maxWR = 65;
+  const { on: compareOn } = useCompareMode();
+  const liveMeddicc = compareOn && (liveMeddiccPayload?.n ?? 0) > 0
+    ? liveMeddiccPayload
+    : null;
 
   return (
     <div>
+      {liveMeddicc && (
+        <div style={{ background: C.card, borderRadius: 12, padding: 24, border: `1px solid ${C.primary}33`, marginBottom: 24 }}>
+          <h3 style={{ color: C.text, fontSize: 16, fontWeight: 600, margin: "0 0 4px" }}>
+            MEDDICC Element Averages — Live Cohort
+            <span style={{ color: C.textMuted, fontSize: 12, fontWeight: 400, marginLeft: 8 }}>
+              n={liveMeddicc.n}
+            </span>
+          </h3>
+          <p style={{ color: C.textMuted, fontSize: 13, margin: "0 0 16px" }}>
+            Pulled from Supabase deal_analyses. Compare against the per-vertical MEDDICC tables in the Verticals tab — the historical gap pattern (Champion, EB, Decision Process highest) should hold.
+          </p>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+            <thead>
+              <tr style={{ borderBottom: `1px solid ${C.border}` }}>
+                {["Element", "Won avg", "Lost avg", "Gap"].map(h => (
+                  <th key={h} style={{ color: C.textMuted, fontWeight: 600, padding: "10px 12px", textAlign: h === "Element" ? "left" : "right", fontSize: 11, textTransform: "uppercase" }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {liveMeddicc.overall.map((row) => (
+                <tr key={row.element} style={{ borderBottom: `1px solid ${C.border}22`, opacity: row.coverage_ok ? 1 : 0.6 }}>
+                  <td style={{ padding: "10px 12px", color: C.text, fontWeight: 500 }}>
+                    {row.element}
+                    {!row.coverage_ok && <LowNPill variant="lowN" />}
+                  </td>
+                  <td style={{ padding: "10px 12px", textAlign: "right", color: C.won, fontWeight: 600 }}>{row.wonScore ?? "—"}</td>
+                  <td style={{ padding: "10px 12px", textAlign: "right", color: C.lost, fontWeight: 600 }}>{row.lostScore ?? "—"}</td>
+                  <td style={{ padding: "10px 12px", textAlign: "right", color: C.text, fontWeight: 700 }}>{row.gap !== null && row.gap !== undefined ? row.gap.toFixed(2) : "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
       <InsightBox color={C.accent1} title="The Pricing Gate">
         Deals that reached a pricing conversation closed at <strong>54.5%</strong> (103 of 189 deals). Deals that never got there closed at <strong>23.9%</strong> (28 of 117 deals). That's a <strong>30-point gap</strong> — and it's driven entirely by whether the rep got to a pricing conversation, not what happened in it. Coaching reps to accelerate the path to pricing matters more than pricing presentation quality.
       </InsightBox>

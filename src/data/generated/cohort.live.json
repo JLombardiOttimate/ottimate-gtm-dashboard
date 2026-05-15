@@ -1,0 +1,16 @@
+{
+  "n": 27,
+  "generated_at": "2026-05-15T15:40:28.819Z",
+  "outcome": {
+    "won": 8,
+    "lost": 19
+  },
+  "vertical": {
+    "Hospitality": 13,
+    "Grocery": 3,
+    "Healthcare": 7,
+    "Other": 4
+  },
+  "oldest_close_date": "2024-05-30",
+  "newest_close_date": "2026-05-07"
+}

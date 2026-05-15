@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BarChart3, Filter, Zap, ShieldCheck, Users, TrendingUp } from "lucide-react";
+import { BarChart3, Filter, Zap, ShieldCheck, Users, TrendingUp, Calendar } from "lucide-react";
 import { C } from './data/colors';
 import OverviewPanel from './tabs/OverviewPanel';
 import VerticalsPanel from './tabs/VerticalsPanel';
@@ -7,6 +7,8 @@ import TriggersPanel from './tabs/TriggersPanel';
 import ObjectionsPanel from './tabs/ObjectionsPanel';
 import ChampionsPanel from './tabs/ChampionsPanel';
 import ExecutionPanel from './tabs/ExecutionPanel';
+import Q1Panel from './tabs/Q1Panel';
+import CompareToggle from './components/CompareToggle';
 
 const tabs = [
   { id: "overview", label: "Overview", icon: BarChart3 },
@@ -15,6 +17,7 @@ const tabs = [
   { id: "objections", label: "Objections", icon: ShieldCheck },
   { id: "champions", label: "Champions", icon: Users },
   { id: "execution", label: "Deal Execution", icon: TrendingUp },
+  { id: "q1_2026", label: "Q1 2026", icon: Calendar },
 ];
 
 export default function OttimateGTMDashboard() {
@@ -27,18 +30,22 @@ export default function OttimateGTMDashboard() {
     objections: <ObjectionsPanel />,
     champions: <ChampionsPanel />,
     execution: <ExecutionPanel />,
+    q1_2026: <Q1Panel />,
   };
 
   return (
     <div style={{ background: C.bg, minHeight: "100vh", color: C.text, fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
       {/* Header */}
-      <div style={{ background: `linear-gradient(135deg, ${C.card}, ${C.primaryDark}22)`, borderBottom: `1px solid ${C.border}`, padding: "24px 32px" }}>
-        <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, background: `linear-gradient(135deg, ${C.text}, ${C.primaryLight})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-          Ottimate GTM Intelligence
-        </h1>
-        <p style={{ margin: "4px 0 0", color: C.textMuted, fontSize: 14 }}>
-          Buying triggers, objections, and champion patterns across 463 deals · 1,993 calls · Hospitality · Grocery · Healthcare
-        </p>
+      <div style={{ background: `linear-gradient(135deg, ${C.card}, ${C.primaryDark}22)`, borderBottom: `1px solid ${C.border}`, padding: "24px 32px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
+        <div>
+          <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, background: `linear-gradient(135deg, ${C.text}, ${C.primaryLight})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            Ottimate GTM Intelligence
+          </h1>
+          <p style={{ margin: "4px 0 0", color: C.textMuted, fontSize: 14 }}>
+            Buying triggers, objections, and champion patterns across 463 deals · 1,993 calls · Hospitality · Grocery · Healthcare
+          </p>
+        </div>
+        <CompareToggle />
       </div>
 
       {/* Tab Nav */}
