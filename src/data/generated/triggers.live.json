@@ -1,6 +1,6 @@
 {
-  "n": 27,
-  "generated_at": "2026-05-15T15:40:28.820Z",
+  "n": 40,
+  "generated_at": "2026-06-01T19:10:05.928Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
@@ -16,9 +16,9 @@
     },
     {
       "name": "Growth Event (Acquisitions / New Locations)",
-      "deals": 2,
-      "winRate": 50,
-      "hospDeals": 1,
+      "deals": 3,
+      "winRate": 66.7,
+      "hospDeals": 2,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
@@ -40,13 +40,13 @@
     },
     {
       "name": "ERP Migration / System Overhaul",
-      "deals": 1,
+      "deals": 2,
       "winRate": 0,
       "hospDeals": 1,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
-      "hcDeals": 0,
+      "hcDeals": 1,
       "hcWin": null,
       "coverage_ok": false
     },
@@ -64,9 +64,9 @@
     },
     {
       "name": "Vendor Payment Friction / Margin Leakage",
-      "deals": 1,
-      "winRate": 0,
-      "hospDeals": 1,
+      "deals": 2,
+      "winRate": 50,
+      "hospDeals": 2,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
@@ -88,19 +88,19 @@
     },
     {
       "name": "Current Solution Frustration",
-      "deals": 16,
-      "winRate": 43.8,
-      "hospDeals": 6,
-      "hospWin": 33.3,
-      "grocDeals": 2,
-      "grocWin": null,
-      "hcDeals": 7,
-      "hcWin": 57.1,
+      "deals": 21,
+      "winRate": 28.6,
+      "hospDeals": 7,
+      "hospWin": 28.6,
+      "grocDeals": 6,
+      "grocWin": 16.7,
+      "hcDeals": 6,
+      "hcWin": 50,
       "coverage_ok": true
     }
   ],
   "unmappable": {
     "Paper/Manual Process (No Prior Automation)": "no_supabase_equivalent"
   },
-  "unmapped_rows": 1
+  "unmapped_rows": 2
 }
