@@ -1,6 +1,6 @@
 {
-  "n": 40,
-  "generated_at": "2026-06-01T19:10:05.928Z",
+  "n": 46,
+  "generated_at": "2026-06-08T16:43:05.326Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
@@ -76,7 +76,7 @@
     },
     {
       "name": "New Financial Leader",
-      "deals": 1,
+      "deals": 2,
       "winRate": 0,
       "hospDeals": 1,
       "hospWin": null,
@@ -88,12 +88,12 @@
     },
     {
       "name": "Current Solution Frustration",
-      "deals": 21,
-      "winRate": 28.6,
-      "hospDeals": 7,
-      "hospWin": 28.6,
-      "grocDeals": 6,
-      "grocWin": 16.7,
+      "deals": 25,
+      "winRate": 24,
+      "hospDeals": 8,
+      "hospWin": 25,
+      "grocDeals": 9,
+      "grocWin": 11.1,
       "hcDeals": 6,
       "hcWin": 50,
       "coverage_ok": true
