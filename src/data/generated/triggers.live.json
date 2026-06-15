@@ -1,12 +1,12 @@
 {
-  "n": 46,
-  "generated_at": "2026-06-08T16:43:05.326Z",
+  "n": 54,
+  "generated_at": "2026-06-15T17:48:25.600Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
-      "deals": 0,
-      "winRate": null,
-      "hospDeals": 0,
+      "deals": 1,
+      "winRate": 0,
+      "hospDeals": 1,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
@@ -40,9 +40,9 @@
     },
     {
       "name": "ERP Migration / System Overhaul",
-      "deals": 2,
+      "deals": 3,
       "winRate": 0,
-      "hospDeals": 1,
+      "hospDeals": 2,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
@@ -88,14 +88,14 @@
     },
     {
       "name": "Current Solution Frustration",
-      "deals": 25,
-      "winRate": 24,
-      "hospDeals": 8,
-      "hospWin": 25,
-      "grocDeals": 9,
-      "grocWin": 11.1,
-      "hcDeals": 6,
-      "hcWin": 50,
+      "deals": 30,
+      "winRate": 23.3,
+      "hospDeals": 10,
+      "hospWin": 30,
+      "grocDeals": 10,
+      "grocWin": 10,
+      "hcDeals": 7,
+      "hcWin": 42.9,
       "coverage_ok": true
     }
   ],
