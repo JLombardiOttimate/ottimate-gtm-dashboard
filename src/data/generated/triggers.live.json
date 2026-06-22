@@ -1,6 +1,6 @@
 {
-  "n": 54,
-  "generated_at": "2026-06-15T17:48:25.600Z",
+  "n": 56,
+  "generated_at": "2026-06-22T17:24:08.057Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
@@ -88,10 +88,10 @@
     },
     {
       "name": "Current Solution Frustration",
-      "deals": 30,
-      "winRate": 23.3,
-      "hospDeals": 10,
-      "hospWin": 30,
+      "deals": 31,
+      "winRate": 25.8,
+      "hospDeals": 11,
+      "hospWin": 36.4,
       "grocDeals": 10,
       "grocWin": 10,
       "hcDeals": 7,
