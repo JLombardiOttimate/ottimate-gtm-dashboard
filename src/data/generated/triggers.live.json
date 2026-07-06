@@ -1,14 +1,14 @@
 {
-  "n": 68,
-  "generated_at": "2026-06-29T16:32:17.066Z",
+  "n": 76,
+  "generated_at": "2026-07-06T16:11:53.119Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
-      "deals": 3,
+      "deals": 4,
       "winRate": 0,
       "hospDeals": 2,
       "hospWin": null,
-      "grocDeals": 0,
+      "grocDeals": 1,
       "grocWin": null,
       "hcDeals": 1,
       "hcWin": null,
@@ -16,13 +16,13 @@
     },
     {
       "name": "Growth Event (Acquisitions / New Locations)",
-      "deals": 3,
-      "winRate": 66.7,
+      "deals": 4,
+      "winRate": 75,
       "hospDeals": 2,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
-      "hcDeals": 0,
+      "hcDeals": 1,
       "hcWin": null,
       "coverage_ok": false
     },
@@ -88,19 +88,19 @@
     },
     {
       "name": "Current Solution Frustration",
-      "deals": 37,
-      "winRate": 24.3,
-      "hospDeals": 14,
-      "hospWin": 28.6,
+      "deals": 42,
+      "winRate": 28.6,
+      "hospDeals": 18,
+      "hospWin": 33.3,
       "grocDeals": 12,
       "grocWin": 16.7,
-      "hcDeals": 8,
-      "hcWin": 37.5,
+      "hcDeals": 9,
+      "hcWin": 44.4,
       "coverage_ok": true
     }
   ],
   "unmappable": {
     "Paper/Manual Process (No Prior Automation)": "no_supabase_equivalent"
   },
-  "unmapped_rows": 2
+  "unmapped_rows": 3
 }
