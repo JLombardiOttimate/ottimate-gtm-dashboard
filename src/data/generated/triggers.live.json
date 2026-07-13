@@ -1,18 +1,18 @@
 {
-  "n": 76,
-  "generated_at": "2026-07-06T16:11:53.119Z",
+  "n": 96,
+  "generated_at": "2026-07-13T15:37:29.436Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
-      "deals": 4,
+      "deals": 7,
       "winRate": 0,
-      "hospDeals": 2,
+      "hospDeals": 3,
       "hospWin": null,
       "grocDeals": 1,
       "grocWin": null,
-      "hcDeals": 1,
+      "hcDeals": 3,
       "hcWin": null,
-      "coverage_ok": false
+      "coverage_ok": true
     },
     {
       "name": "Growth Event (Acquisitions / New Locations)",
@@ -40,15 +40,15 @@
     },
     {
       "name": "ERP Migration / System Overhaul",
-      "deals": 4,
-      "winRate": 25,
-      "hospDeals": 3,
+      "deals": 5,
+      "winRate": 20,
+      "hospDeals": 4,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
       "hcDeals": 1,
       "hcWin": null,
-      "coverage_ok": false
+      "coverage_ok": true
     },
     {
       "name": "Month-End Close Pain",
@@ -88,14 +88,14 @@
     },
     {
       "name": "Current Solution Frustration",
-      "deals": 42,
-      "winRate": 28.6,
-      "hospDeals": 18,
-      "hospWin": 33.3,
+      "deals": 55,
+      "winRate": 23.6,
+      "hospDeals": 27,
+      "hospWin": 22.2,
       "grocDeals": 12,
       "grocWin": 16.7,
-      "hcDeals": 9,
-      "hcWin": 44.4,
+      "hcDeals": 13,
+      "hcWin": 38.5,
       "coverage_ok": true
     }
   ],
