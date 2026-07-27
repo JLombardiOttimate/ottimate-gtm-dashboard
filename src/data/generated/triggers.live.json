@@ -1,14 +1,14 @@
 {
-  "n": 99,
-  "generated_at": "2026-07-20T15:00:25.625Z",
+  "n": 168,
+  "generated_at": "2026-07-27T15:35:26.553Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
-      "deals": 7,
+      "deals": 10,
       "winRate": 0,
-      "hospDeals": 3,
-      "hospWin": null,
-      "grocDeals": 1,
+      "hospDeals": 5,
+      "hospWin": 0,
+      "grocDeals": 2,
       "grocWin": null,
       "hcDeals": 3,
       "hcWin": null,
@@ -16,21 +16,21 @@
     },
     {
       "name": "Growth Event (Acquisitions / New Locations)",
-      "deals": 4,
-      "winRate": 75,
-      "hospDeals": 2,
-      "hospWin": null,
+      "deals": 7,
+      "winRate": 42.9,
+      "hospDeals": 5,
+      "hospWin": 20,
       "grocDeals": 0,
       "grocWin": null,
       "hcDeals": 1,
       "hcWin": null,
-      "coverage_ok": false
+      "coverage_ok": true
     },
     {
       "name": "Audit / Compliance Pressure",
-      "deals": 1,
+      "deals": 2,
       "winRate": 0,
-      "hospDeals": 0,
+      "hospDeals": 1,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
@@ -40,10 +40,10 @@
     },
     {
       "name": "ERP Migration / System Overhaul",
-      "deals": 6,
-      "winRate": 16.7,
-      "hospDeals": 4,
-      "hospWin": null,
+      "deals": 7,
+      "winRate": 14.3,
+      "hospDeals": 5,
+      "hospWin": 20,
       "grocDeals": 0,
       "grocWin": null,
       "hcDeals": 1,
@@ -88,19 +88,19 @@
     },
     {
       "name": "Current Solution Frustration",
-      "deals": 57,
-      "winRate": 24.6,
-      "hospDeals": 27,
-      "hospWin": 22.2,
+      "deals": 71,
+      "winRate": 19.7,
+      "hospDeals": 39,
+      "hospWin": 15.4,
       "grocDeals": 12,
       "grocWin": 16.7,
-      "hcDeals": 15,
-      "hcWin": 40,
+      "hcDeals": 17,
+      "hcWin": 35.3,
       "coverage_ok": true
     }
   ],
   "unmappable": {
     "Paper/Manual Process (No Prior Automation)": "no_supabase_equivalent"
   },
-  "unmapped_rows": 3
+  "unmapped_rows": 36
 }
