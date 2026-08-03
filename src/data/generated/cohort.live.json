@@ -1,16 +1,16 @@
 {
-  "n": 168,
-  "generated_at": "2026-07-27T15:35:26.552Z",
+  "n": 248,
+  "generated_at": "2026-08-03T15:36:00.603Z",
   "outcome": {
-    "won": 21,
-    "lost": 147
+    "won": 23,
+    "lost": 225
   },
   "vertical": {
-    "Hospitality": 116,
-    "Grocery": 18,
-    "Healthcare": 24,
-    "Other": 10
+    "Hospitality": 125,
+    "Grocery": 43,
+    "Healthcare": 69,
+    "Other": 11
   },
   "oldest_close_date": "2025-06-16",
-  "newest_close_date": "2026-07-24"
+  "newest_close_date": "2026-07-31"
 }
