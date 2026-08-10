@@ -1,54 +1,54 @@
 {
-  "n": 248,
-  "generated_at": "2026-08-03T15:36:00.605Z",
+  "n": 290,
+  "generated_at": "2026-08-10T14:11:09.130Z",
   "overall": [
     {
       "element": "Metrics",
-      "wonScore": 2.77,
-      "lostScore": 1.25,
-      "gap": 1.52,
+      "wonScore": 2.74,
+      "lostScore": 1.11,
+      "gap": 1.63,
       "coverage_ok": true
     },
     {
       "element": "Economic Buyer",
-      "wonScore": 3.36,
-      "lostScore": 2.09,
-      "gap": 1.27,
+      "wonScore": 3.32,
+      "lostScore": 2.04,
+      "gap": 1.28,
       "coverage_ok": true
     },
     {
       "element": "Decision Criteria",
-      "wonScore": 3.64,
-      "lostScore": 1.95,
-      "gap": 1.69,
+      "wonScore": 3.58,
+      "lostScore": 1.48,
+      "gap": 2.1,
       "coverage_ok": true
     },
     {
       "element": "Decision Process",
-      "wonScore": 3.45,
-      "lostScore": 1.67,
-      "gap": 1.78,
+      "wonScore": 3.42,
+      "lostScore": 1.26,
+      "gap": 2.16,
       "coverage_ok": true
     },
     {
       "element": "Implicate Pain",
-      "wonScore": 3.77,
-      "lostScore": 2.42,
-      "gap": 1.35,
+      "wonScore": 3.89,
+      "lostScore": 1.89,
+      "gap": 2,
       "coverage_ok": true
     },
     {
       "element": "Champion",
       "wonScore": 4,
-      "lostScore": 1.87,
-      "gap": 2.13,
+      "lostScore": 1.41,
+      "gap": 2.59,
       "coverage_ok": true
     },
     {
       "element": "Competition",
-      "wonScore": 2.41,
-      "lostScore": 1.47,
-      "gap": 0.94,
+      "wonScore": 2.32,
+      "lostScore": 1.3,
+      "gap": 1.02,
       "coverage_ok": true
     }
   ]
