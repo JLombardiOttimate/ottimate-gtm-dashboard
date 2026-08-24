@@ -1,6 +1,6 @@
 {
-  "n": 310,
-  "generated_at": "2026-08-17T13:31:20.494Z",
+  "n": 314,
+  "generated_at": "2026-08-24T13:41:08.058Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
@@ -102,5 +102,5 @@
   "unmappable": {
     "Paper/Manual Process (No Prior Automation)": "no_supabase_equivalent"
   },
-  "unmapped_rows": 28
+  "unmapped_rows": 30
 }
