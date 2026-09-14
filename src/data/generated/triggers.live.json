@@ -1,6 +1,6 @@
 {
-  "n": 348,
-  "generated_at": "2026-09-07T17:59:04.849Z",
+  "n": 358,
+  "generated_at": "2026-09-14T18:14:49.282Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
@@ -52,23 +52,23 @@
     },
     {
       "name": "Month-End Close Pain",
-      "deals": 4,
-      "winRate": 0,
+      "deals": 5,
+      "winRate": 20,
       "hospDeals": 1,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
-      "hcDeals": 3,
+      "hcDeals": 4,
       "hcWin": null,
-      "coverage_ok": false
+      "coverage_ok": true
     },
     {
       "name": "Vendor Payment Friction / Margin Leakage",
-      "deals": 6,
-      "winRate": 33.3,
+      "deals": 7,
+      "winRate": 28.6,
       "hospDeals": 4,
       "hospWin": null,
-      "grocDeals": 2,
+      "grocDeals": 3,
       "grocWin": null,
       "hcDeals": 0,
       "hcWin": null,
@@ -88,19 +88,19 @@
     },
     {
       "name": "Current Solution Frustration",
-      "deals": 56,
-      "winRate": 21.4,
-      "hospDeals": 25,
-      "hospWin": 24,
-      "grocDeals": 11,
-      "grocWin": 18.2,
-      "hcDeals": 14,
-      "hcWin": 28.6,
+      "deals": 59,
+      "winRate": 20.3,
+      "hospDeals": 26,
+      "hospWin": 23.1,
+      "grocDeals": 12,
+      "grocWin": 16.7,
+      "hcDeals": 15,
+      "hcWin": 26.7,
       "coverage_ok": true
     }
   ],
   "unmappable": {
     "Paper/Manual Process (No Prior Automation)": "no_supabase_equivalent"
   },
-  "unmapped_rows": 29
+  "unmapped_rows": 31
 }
