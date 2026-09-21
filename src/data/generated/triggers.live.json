@@ -1,25 +1,25 @@
 {
-  "n": 358,
-  "generated_at": "2026-09-14T18:14:49.282Z",
+  "n": 381,
+  "generated_at": "2026-09-21T18:21:48.485Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
-      "deals": 27,
-      "winRate": 14.8,
-      "hospDeals": 9,
-      "hospWin": 22.2,
+      "deals": 30,
+      "winRate": 13.3,
+      "hospDeals": 11,
+      "hospWin": 18.2,
       "grocDeals": 6,
       "grocWin": 16.7,
-      "hcDeals": 12,
-      "hcWin": 8.3,
+      "hcDeals": 13,
+      "hcWin": 7.7,
       "coverage_ok": true
     },
     {
       "name": "Growth Event (Acquisitions / New Locations)",
-      "deals": 46,
-      "winRate": 8.7,
-      "hospDeals": 19,
-      "hospWin": 10.5,
+      "deals": 48,
+      "winRate": 8.3,
+      "hospDeals": 21,
+      "hospWin": 9.5,
       "grocDeals": 10,
       "grocWin": 0,
       "hcDeals": 13,
@@ -40,26 +40,26 @@
     },
     {
       "name": "ERP Migration / System Overhaul",
-      "deals": 28,
-      "winRate": 3.6,
-      "hospDeals": 13,
-      "hospWin": 7.7,
-      "grocDeals": 3,
+      "deals": 31,
+      "winRate": 3.2,
+      "hospDeals": 14,
+      "hospWin": 7.1,
+      "grocDeals": 4,
       "grocWin": null,
-      "hcDeals": 9,
+      "hcDeals": 10,
       "hcWin": 0,
       "coverage_ok": true
     },
     {
       "name": "Month-End Close Pain",
-      "deals": 5,
-      "winRate": 20,
-      "hospDeals": 1,
+      "deals": 9,
+      "winRate": 11.1,
+      "hospDeals": 2,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
-      "hcDeals": 4,
-      "hcWin": null,
+      "hcDeals": 7,
+      "hcWin": 14.3,
       "coverage_ok": true
     },
     {
@@ -88,10 +88,10 @@
     },
     {
       "name": "Current Solution Frustration",
-      "deals": 59,
-      "winRate": 20.3,
-      "hospDeals": 26,
-      "hospWin": 23.1,
+      "deals": 60,
+      "winRate": 20,
+      "hospDeals": 27,
+      "hospWin": 22.2,
       "grocDeals": 12,
       "grocWin": 16.7,
       "hcDeals": 15,
@@ -102,5 +102,5 @@
   "unmappable": {
     "Paper/Manual Process (No Prior Automation)": "no_supabase_equivalent"
   },
-  "unmapped_rows": 31
+  "unmapped_rows": 36
 }
