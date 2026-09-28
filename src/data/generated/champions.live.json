@@ -1,46 +1,46 @@
 {
-  "n": 381,
-  "n_with_score": 365,
-  "generated_at": "2026-09-21T18:21:48.486Z",
+  "n": 403,
+  "n_with_score": 373,
+  "generated_at": "2026-09-28T19:53:24.607Z",
   "scoreData": [
     {
       "score": "0",
       "won": 1,
-      "lost": 14,
-      "total": 15,
-      "winRate": 6.7,
+      "lost": 16,
+      "total": 17,
+      "winRate": 5.9,
       "coverage_ok": true
     },
     {
       "score": "1",
       "won": 1,
-      "lost": 104,
-      "total": 105,
-      "winRate": 1,
+      "lost": 105,
+      "total": 106,
+      "winRate": 0.9,
       "coverage_ok": true
     },
     {
       "score": "2",
       "won": 1,
-      "lost": 102,
-      "total": 103,
-      "winRate": 1,
+      "lost": 105,
+      "total": 106,
+      "winRate": 0.9,
       "coverage_ok": true
     },
     {
       "score": "3",
       "won": 4,
-      "lost": 86,
-      "total": 90,
+      "lost": 87,
+      "total": 91,
       "winRate": 4.4,
       "coverage_ok": true
     },
     {
       "score": "4",
-      "won": 15,
+      "won": 16,
       "lost": 24,
-      "total": 39,
-      "winRate": 38.5,
+      "total": 40,
+      "winRate": 40,
       "coverage_ok": true
     },
     {
@@ -53,5 +53,5 @@
     }
   ],
   "avgWon": 3.94,
-  "avgLost": 2.02
+  "avgLost": 2.01
 }

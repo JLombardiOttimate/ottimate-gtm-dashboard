@@ -1,17 +1,17 @@
 {
-  "n": 381,
-  "generated_at": "2026-09-21T18:21:48.485Z",
+  "n": 403,
+  "generated_at": "2026-09-28T19:53:24.605Z",
   "items": [
     {
       "name": "Staff Loss / AP Turnover",
-      "deals": 30,
-      "winRate": 13.3,
+      "deals": 31,
+      "winRate": 12.9,
       "hospDeals": 11,
       "hospWin": 18.2,
       "grocDeals": 6,
       "grocWin": 16.7,
-      "hcDeals": 13,
-      "hcWin": 7.7,
+      "hcDeals": 14,
+      "hcWin": 7.1,
       "coverage_ok": true
     },
     {
@@ -28,10 +28,10 @@
     },
     {
       "name": "Audit / Compliance Pressure",
-      "deals": 7,
+      "deals": 8,
       "winRate": 0,
-      "hospDeals": 4,
-      "hospWin": null,
+      "hospDeals": 5,
+      "hospWin": 0,
       "grocDeals": 0,
       "grocWin": null,
       "hcDeals": 2,
@@ -40,10 +40,10 @@
     },
     {
       "name": "ERP Migration / System Overhaul",
-      "deals": 31,
-      "winRate": 3.2,
-      "hospDeals": 14,
-      "hospWin": 7.1,
+      "deals": 33,
+      "winRate": 3,
+      "hospDeals": 16,
+      "hospWin": 6.3,
       "grocDeals": 4,
       "grocWin": null,
       "hcDeals": 10,
@@ -52,9 +52,9 @@
     },
     {
       "name": "Month-End Close Pain",
-      "deals": 9,
-      "winRate": 11.1,
-      "hospDeals": 2,
+      "deals": 11,
+      "winRate": 18.2,
+      "hospDeals": 4,
       "hospWin": null,
       "grocDeals": 0,
       "grocWin": null,
@@ -88,12 +88,12 @@
     },
     {
       "name": "Current Solution Frustration",
-      "deals": 60,
-      "winRate": 20,
-      "hospDeals": 27,
-      "hospWin": 22.2,
-      "grocDeals": 12,
-      "grocWin": 16.7,
+      "deals": 62,
+      "winRate": 19.4,
+      "hospDeals": 28,
+      "hospWin": 21.4,
+      "grocDeals": 13,
+      "grocWin": 15.4,
       "hcDeals": 15,
       "hcWin": 26.7,
       "coverage_ok": true
@@ -102,5 +102,5 @@
   "unmappable": {
     "Paper/Manual Process (No Prior Automation)": "no_supabase_equivalent"
   },
-  "unmapped_rows": 36
+  "unmapped_rows": 38
 }
